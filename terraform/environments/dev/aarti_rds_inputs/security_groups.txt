@@ -1,0 +1,213 @@
+# Generated: 2026-05-09T18:56:10+03:00
+# Command: aws ec2 describe-security-groups --region 'us-east-1' --group-ids sg-066a4a19d7c11935c sg-00629331e6ac801f2 sg-020364a6a14aabe31 --query 'SecurityGroups[*].{Name:GroupName,Id:GroupId,Description:Description,VpcId:VpcId,Ingress:IpPermissions,Egress:IpPermissionsEgress,Tags:Tags}' --output json
+
+[
+    {
+        "Name": "petclinic-dev-alb-sg",
+        "Id": "sg-020364a6a14aabe31",
+        "Description": "Security group for public Application Load Balancer",
+        "VpcId": "vpc-083c68b82d83b66ff",
+        "Ingress": [
+            {
+                "IpProtocol": "tcp",
+                "FromPort": 80,
+                "ToPort": 80,
+                "UserIdGroupPairs": [],
+                "IpRanges": [
+                    {
+                        "Description": "Allow public HTTP traffic",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            },
+            {
+                "IpProtocol": "tcp",
+                "FromPort": 443,
+                "ToPort": 443,
+                "UserIdGroupPairs": [],
+                "IpRanges": [
+                    {
+                        "Description": "Allow public HTTPS traffic",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ],
+        "Egress": [
+            {
+                "IpProtocol": "-1",
+                "UserIdGroupPairs": [],
+                "IpRanges": [
+                    {
+                        "Description": "Allow all outbound traffic from ALB",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ],
+        "Tags": [
+            {
+                "Key": "Team",
+                "Value": "team-1-infra"
+            },
+            {
+                "Key": "Name",
+                "Value": "petclinic-dev-alb-sg"
+            },
+            {
+                "Key": "Project",
+                "Value": "petclinic"
+            },
+            {
+                "Key": "Environment",
+                "Value": "dev"
+            },
+            {
+                "Key": "ManagedBy",
+                "Value": "terraform"
+            }
+        ]
+    },
+    {
+        "Name": "petclinic-dev-eks-node-sg",
+        "Id": "sg-066a4a19d7c11935c",
+        "Description": "Security group attached to PetClinic EKS worker nodes",
+        "VpcId": "vpc-083c68b82d83b66ff",
+        "Ingress": [
+            {
+                "IpProtocol": "-1",
+                "UserIdGroupPairs": [
+                    {
+                        "Description": "Allow all traffic from EKS control plane security group",
+                        "UserId": "482352877891",
+                        "GroupId": "sg-0a20e346918cf325b"
+                    },
+                    {
+                        "Description": "Allow inter-node communication",
+                        "UserId": "482352877891",
+                        "GroupId": "sg-066a4a19d7c11935c"
+                    }
+                ],
+                "IpRanges": [],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            },
+            {
+                "IpProtocol": "tcp",
+                "FromPort": 10250,
+                "ToPort": 10250,
+                "UserIdGroupPairs": [
+                    {
+                        "Description": "Allow kubelet API from EKS control plane",
+                        "UserId": "482352877891",
+                        "GroupId": "sg-0a20e346918cf325b"
+                    }
+                ],
+                "IpRanges": [],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ],
+        "Egress": [
+            {
+                "IpProtocol": "-1",
+                "UserIdGroupPairs": [],
+                "IpRanges": [
+                    {
+                        "Description": "Allow all outbound traffic from worker nodes",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ],
+        "Tags": [
+            {
+                "Key": "Project",
+                "Value": "petclinic"
+            },
+            {
+                "Key": "Team",
+                "Value": "team-1-infra"
+            },
+            {
+                "Key": "ManagedBy",
+                "Value": "terraform"
+            },
+            {
+                "Key": "Name",
+                "Value": "petclinic-dev-eks-node-sg"
+            },
+            {
+                "Key": "Environment",
+                "Value": "dev"
+            }
+        ]
+    },
+    {
+        "Name": "petclinic-dev-rds-sg",
+        "Id": "sg-00629331e6ac801f2",
+        "Description": "Security group for PetClinic RDS MySQL",
+        "VpcId": "vpc-083c68b82d83b66ff",
+        "Ingress": [
+            {
+                "IpProtocol": "tcp",
+                "FromPort": 3306,
+                "ToPort": 3306,
+                "UserIdGroupPairs": [
+                    {
+                        "Description": "Allow MySQL only from EKS worker nodes",
+                        "UserId": "482352877891",
+                        "GroupId": "sg-066a4a19d7c11935c"
+                    }
+                ],
+                "IpRanges": [],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ],
+        "Egress": [
+            {
+                "IpProtocol": "-1",
+                "UserIdGroupPairs": [],
+                "IpRanges": [
+                    {
+                        "Description": "Allow outbound traffic from RDS security group",
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ],
+                "Ipv6Ranges": [],
+                "PrefixListIds": []
+            }
+        ],
+        "Tags": [
+            {
+                "Key": "Team",
+                "Value": "team-1-infra"
+            },
+            {
+                "Key": "Project",
+                "Value": "petclinic"
+            },
+            {
+                "Key": "Environment",
+                "Value": "dev"
+            },
+            {
+                "Key": "ManagedBy",
+                "Value": "terraform"
+            },
+            {
+                "Key": "Name",
+                "Value": "petclinic-dev-rds-sg"
+            }
+        ]
+    }
+]

@@ -1,0 +1,7 @@
+vpc_id=vpc-083c68b82d83b66ff
+eks_cluster_name=petclinic-dev
+eks_node_security_group_id=sg-066a4a19d7c11935c
+rds_security_group_id=sg-00629331e6ac801f2
+alb_security_group_id=sg-020364a6a14aabe31
+region=us-east-1
+account_id=482352877891

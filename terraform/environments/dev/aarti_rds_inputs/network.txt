@@ -1,0 +1,100 @@
+# Generated: 2026-05-09T18:55:59+03:00
+# Command: echo 'VPC:'; aws ec2 describe-vpcs --region 'us-east-1' --vpc-ids 'vpc-083c68b82d83b66ff' --query 'Vpcs[*].{VpcId:VpcId,CidrBlock:CidrBlock,State:State,Tags:Tags}' --output table; echo; echo 'SUBNETS:'; aws ec2 describe-subnets --region 'us-east-1' --filters Name=vpc-id,Values='vpc-083c68b82d83b66ff' --query 'Subnets[*].{SubnetId:SubnetId,Cidr:CidrBlock,AZ:AvailabilityZone,PublicIP:MapPublicIpOnLaunch,Tags:Tags}' --output table; echo; echo 'ROUTE TABLES:'; aws ec2 describe-route-tables --region 'us-east-1' --filters Name=vpc-id,Values='vpc-083c68b82d83b66ff' --query 'RouteTables[*].{RouteTableId:RouteTableId,Routes:Routes[*].DestinationCidrBlock,Tags:Tags}' --output json
+
+VPC:
+-------------------------------------------------------
+|                    DescribeVpcs                     |
++--------------+------------+-------------------------+
+|   CidrBlock  |   State    |          VpcId          |
++--------------+------------+-------------------------+
+|  10.0.0.0/16 |  available |  vpc-083c68b82d83b66ff  |
++--------------+------------+-------------------------+
+||                       Tags                        ||
+|+--------------------+------------------------------+|
+||         Key        |            Value             ||
+|+--------------------+------------------------------+|
+||  Team              |  team-1-infra                ||
+||  Environment       |  dev                         ||
+||  ManagedBy         |  terraform                   ||
+||  Project           |  petclinic                   ||
+||  Name              |  petclinic-dev-vpc           ||
+|+--------------------+------------------------------+|
+
+SUBNETS:
+-----------------------------------------------------------------------
+|                           DescribeSubnets                           |
++------------+--------------+-----------+-----------------------------+
+|     AZ     |    Cidr      | PublicIP  |          SubnetId           |
++------------+--------------+-----------+-----------------------------+
+|  us-east-1a|  10.0.1.0/24 |  True     |  subnet-001fc51be03c80e4f   |
++------------+--------------+-----------+-----------------------------+
+||                               Tags                                ||
+|+---------------------------------------+---------------------------+|
+||                  Key                  |           Value           ||
+|+---------------------------------------+---------------------------+|
+||  Environment                          |  dev                      ||
+||  ManagedBy                            |  terraform                ||
+||  Name                                 |  petclinic-dev-public-1   ||
+||  Project                              |  petclinic                ||
+||  kubernetes.io/role/elb               |  1                        ||
+||  Team                                 |  team-1-infra             ||
+||  kubernetes.io/cluster/petclinic-dev  |  shared                   ||
+|+---------------------------------------+---------------------------+|
+|                           DescribeSubnets                           |
++------------+--------------+-----------+-----------------------------+
+|     AZ     |    Cidr      | PublicIP  |          SubnetId           |
++------------+--------------+-----------+-----------------------------+
+|  us-east-1b|  10.0.2.0/24 |  True     |  subnet-058f25865e0b5246b   |
++------------+--------------+-----------+-----------------------------+
+||                               Tags                                ||
+|+---------------------------------------+---------------------------+|
+||                  Key                  |           Value           ||
+|+---------------------------------------+---------------------------+|
+||  kubernetes.io/cluster/petclinic-dev  |  shared                   ||
+||  Environment                          |  dev                      ||
+||  kubernetes.io/role/elb               |  1                        ||
+||  ManagedBy                            |  terraform                ||
+||  Team                                 |  team-1-infra             ||
+||  Project                              |  petclinic                ||
+||  Name                                 |  petclinic-dev-public-2   ||
+|+---------------------------------------+---------------------------+|
+
+ROUTE TABLES:
+[
+    {
+        "RouteTableId": "rtb-0a2a0ba7fd87d2062",
+        "Routes": [
+            "10.0.0.0/16",
+            "0.0.0.0/0"
+        ],
+        "Tags": [
+            {
+                "Key": "Team",
+                "Value": "team-1-infra"
+            },
+            {
+                "Key": "ManagedBy",
+                "Value": "terraform"
+            },
+            {
+                "Key": "Project",
+                "Value": "petclinic"
+            },
+            {
+                "Key": "Environment",
+                "Value": "dev"
+            },
+            {
+                "Key": "Name",
+                "Value": "petclinic-dev-public-rt"
+            }
+        ]
+    },
+    {
+        "RouteTableId": "rtb-033a05b97b006bfe5",
+        "Routes": [
+            "10.0.0.0/16"
+        ],
+        "Tags": []
+    }
+]

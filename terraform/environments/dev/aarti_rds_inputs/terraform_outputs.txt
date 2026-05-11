@@ -1,0 +1,57 @@
+# Generated: 2026-05-09T18:55:34+03:00
+# Command: terraform output
+
+alb_security_group_id = "sg-020364a6a14aabe31"
+ecr_repository_arns = {
+  "admin-server" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/admin-server"
+  "api-gateway" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/api-gateway"
+  "config-server" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/config-server"
+  "customers-service" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/customers-service"
+  "discovery-server" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/discovery-server"
+  "genai-service" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/genai-service"
+  "vets-service" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/vets-service"
+  "visits-service" = "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/visits-service"
+}
+ecr_repository_names = {
+  "admin-server" = "petclinic-dev/admin-server"
+  "api-gateway" = "petclinic-dev/api-gateway"
+  "config-server" = "petclinic-dev/config-server"
+  "customers-service" = "petclinic-dev/customers-service"
+  "discovery-server" = "petclinic-dev/discovery-server"
+  "genai-service" = "petclinic-dev/genai-service"
+  "vets-service" = "petclinic-dev/vets-service"
+  "visits-service" = "petclinic-dev/visits-service"
+}
+ecr_repository_urls = {
+  "admin-server" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/admin-server"
+  "api-gateway" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/api-gateway"
+  "config-server" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/config-server"
+  "customers-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/customers-service"
+  "discovery-server" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/discovery-server"
+  "genai-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/genai-service"
+  "vets-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/vets-service"
+  "visits-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/visits-service"
+}
+eks_cluster_certificate_authority_data = <sensitive>
+eks_cluster_endpoint = "https://2D7FB862A44A88E0065D52E678EB304F.gr7.us-east-1.eks.amazonaws.com"
+eks_cluster_name = "petclinic-dev"
+eks_cluster_role_arn = "arn:aws:iam::482352877891:role/petclinic-dev-eks-cluster-role"
+eks_cluster_security_group_id = "sg-0a20e346918cf325b"
+eks_node_group_name = "petclinic-dev-nodes"
+eks_node_role_arn = "arn:aws:iam::482352877891:role/petclinic-dev-eks-node-role"
+eks_node_security_group_id = "sg-066a4a19d7c11935c"
+eks_oidc_provider_arn = "arn:aws:iam::482352877891:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/2D7FB862A44A88E0065D52E678EB304F"
+eks_oidc_provider_url = "oidc.eks.us-east-1.amazonaws.com/id/2D7FB862A44A88E0065D52E678EB304F"
+internet_gateway_id = "igw-08078fbeeea230f59"
+public_route_table_id = "rtb-0a2a0ba7fd87d2062"
+public_subnet_cidrs = [
+  "10.0.1.0/24",
+  "10.0.2.0/24",
+]
+public_subnet_ids = [
+  "subnet-001fc51be03c80e4f",
+  "subnet-058f25865e0b5246b",
+]
+rds_security_group_id = "sg-00629331e6ac801f2"
+vpc_cidr = "10.0.0.0/16"
+vpc_id = "vpc-083c68b82d83b66ff"

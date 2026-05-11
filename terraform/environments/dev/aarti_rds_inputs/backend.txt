@@ -1,0 +1,53 @@
+# Generated: 2026-05-09T18:55:49+03:00
+# Command: aws s3api get-bucket-versioning --bucket petclinic-terraform-state-482352877891 --region 'us-east-1'; echo; aws s3api get-bucket-encryption --bucket petclinic-terraform-state-482352877891 --region 'us-east-1'; echo; aws s3api get-public-access-block --bucket petclinic-terraform-state-482352877891 --region 'us-east-1'; echo; aws dynamodb describe-table --table-name petclinic-terraform-locks --region 'us-east-1' --query 'Table.{TableName:TableName,Status:TableStatus,KeySchema:KeySchema,BillingMode:BillingModeSummary.BillingMode}' --output json
+
+-----------------------
+| GetBucketVersioning |
++---------+-----------+
+|  Status |  Enabled  |
++---------+-----------+
+
+------------------------------------------
+|           GetBucketEncryption          |
++----------------------------------------+
+||   ServerSideEncryptionConfiguration  ||
+|+--------------------------------------+|
+|||                Rules               |||
+||+------------------------------------+||
+|||          BucketKeyEnabled          |||
+||+------------------------------------+||
+|||  False                             |||
+||+------------------------------------+||
+||||ApplyServerSideEncryptionByDefault||||
+|||+--------------------+-------------+|||
+||||  SSEAlgorithm      |  AES256     ||||
+|||+--------------------+-------------+|||
+||||      BlockedEncryptionTypes      ||||
+|||+----------------------------------+|||
+|||||         EncryptionType         |||||
+||||+--------------------------------+||||
+|||||  SSE-C                         |||||
+||||+--------------------------------+||||
+
+-------------------------------------
+|       GetPublicAccessBlock        |
++-----------------------------------+
+|| PublicAccessBlockConfiguration  ||
+|+-------------------------+-------+|
+||  BlockPublicAcls        |  True ||
+||  BlockPublicPolicy      |  True ||
+||  IgnorePublicAcls       |  True ||
+||  RestrictPublicBuckets  |  True ||
+|+-------------------------+-------+|
+
+{
+    "TableName": "petclinic-terraform-locks",
+    "Status": "ACTIVE",
+    "KeySchema": [
+        {
+            "AttributeName": "LockID",
+            "KeyType": "HASH"
+        }
+    ],
+    "BillingMode": "PAY_PER_REQUEST"
+}
