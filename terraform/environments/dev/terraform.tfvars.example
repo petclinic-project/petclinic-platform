@@ -1,0 +1,8 @@
+project_name = "petclinic"
+environment  = "dev"
+aws_region   = "us-east-1"
+
+cluster_name = "petclinic-dev"
+
+domain_name        = "lulamistack.co"
+application_domain = "petclinic-dev.lulamistack.co"
