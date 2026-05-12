@@ -97,3 +97,25 @@ module "rds" {
   final_snapshot_identifier = "${var.project}-${var.environment}-rds-final-snapshot"
   copy_tags_to_snapshot     = true
 }
+
+
+module "iam" {
+  source = "../../modules/iam"
+
+  project        = var.project
+  environment    = var.environment
+  aws_account_id = data.aws_caller_identity.current.account_id
+  aws_region     = var.aws_region
+
+  # OIDC values from the EKS module — do not hardcode these
+  oidc_provider_arn = module.eks.oidc_provider_arn
+  oidc_provider_url = module.eks.oidc_provider_url
+
+  # RDS secret ARN — the exact Secrets Manager secret ESO is allowed to read
+  rds_secret_arn = module.rds.master_user_secret_arn
+
+  # GitHub repository that owns the CI workflows (TEAM-3)
+  github_org    = var.github_org
+  github_repo   = var.github_repo
+  github_branch = var.github_branch
+}

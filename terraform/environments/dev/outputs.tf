@@ -149,3 +149,23 @@ output "rds_copy_tags_to_snapshot" {
   description = "Whether RDS tags are copied to snapshots"
   value       = module.rds.copy_tags_to_snapshot
 }
+
+output "iam_eso_role_arn" {
+  description = "IRSA role ARN for External Secrets Operator — TEAM-2 annotates external-secrets-sa with this"
+  value       = module.iam.eso_role_arn
+}
+
+output "iam_lb_controller_role_arn" {
+  description = "IRSA role ARN for AWS Load Balancer Controller — TEAM-2 annotates aws-load-balancer-controller with this"
+  value       = module.iam.lb_controller_role_arn
+}
+
+output "iam_ebs_csi_role_arn" {
+  description = "IRSA role ARN for EBS CSI Driver — applied to ebs-csi-controller-sa"
+  value       = module.iam.ebs_csi_role_arn
+}
+
+output "iam_github_actions_role_arn" {
+  description = "OIDC role ARN for GitHub Actions — TEAM-3 sets this as AWS_ROLE_ARN in GitHub repository secrets"
+  value       = module.iam.github_actions_role_arn
+}

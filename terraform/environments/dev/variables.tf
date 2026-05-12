@@ -15,3 +15,20 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "github_org" {
+  description = "GitHub organisation or user name that owns the application repository"
+  type        = string
+}
+
+variable "github_repo" {
+  description = "GitHub repository name (without the org prefix)"
+  type        = string
+}
+
+variable "github_branch" {
+  description = "Branch that is allowed to assume the GitHub Actions CI role"
+  type        = string
+  default     = "main"
+}
+

@@ -6,3 +6,10 @@ cluster_name = "petclinic-dev"
 
 domain_name        = "lulamistack.co"
 application_domain = "petclinic-dev.lulamistack.co"
+
+
+# GitHub — required for the GitHub Actions CI keyless role (TEAM-3)
+github_org    = "your-github-org"        # replace with actual GitHub org or username
+github_repo   = "spring-petclinic-microservices"
+github_branch = "main"
+
