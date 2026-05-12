@@ -13,7 +13,7 @@ jobs:
       - name: Assume CI role via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-to-assume: arn:aws:iam::482352877891:role/petclinic-github-actions-role
           aws-region: us-east-1
 
       - name: Confirm identity is the CI role, not a human user
