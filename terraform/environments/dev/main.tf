@@ -66,3 +66,34 @@ module "ecr" {
   untagged_image_retention_days = 7
   tagged_image_retention_count  = 20
 }
+
+module "rds" {
+  source = "../../modules/rds"
+
+  project     = var.project
+  environment = var.environment
+
+  subnet_ids = module.vpc.public_subnet_ids
+
+  security_group_ids = [
+    module.vpc.rds_security_group_id
+  ]
+
+  database_name   = "petclinic"
+  master_username = "petclinicadmin"
+
+  instance_class      = "db.t4g.micro"
+  allocated_storage   = 20
+  storage_type        = "gp3"
+  publicly_accessible = false
+  multi_az            = false
+
+  backup_retention_period = 1
+  backup_window           = "03:00-04:00"
+  maintenance_window      = "sun:04:00-sun:05:00"
+
+  deletion_protection       = false
+  skip_final_snapshot       = false
+  final_snapshot_identifier = "${var.project}-${var.environment}-rds-final-snapshot"
+  copy_tags_to_snapshot     = true
+}
