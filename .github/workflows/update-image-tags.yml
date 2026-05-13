@@ -1,0 +1,144 @@
+# =============================================================================
+# update-image-tags.yml — CD: update Helm image tags after a successful build
+#
+# Triggered by repository_dispatch from the app repo (build-push.yml Job 3).
+# For every service in the payload, this workflow runs yq to set image.tag
+# in helm-values/{service}.yaml inside petclinic-microservices, then commits
+# and pushes directly to petclinic-microservices main.
+# ArgoCD detects the new commit and automatically syncs the dev Applications.
+#
+# GitOps loop:
+#   app repo push → build-push.yml → ECR push → repository_dispatch
+#     → THIS WORKFLOW → yq update → git commit (in microservices repo)
+#     → ArgoCD sync → EKS rolling update
+#
+# Required secrets:
+#   APP_REPO_TOKEN — PAT with repo scope on petclinic-project/petclinic-microservices
+#
+# Required permissions:
+#   contents: read  — checkout this platform repo (workflow lives here)
+# =============================================================================
+
+name: Update Image Tags
+
+on:
+  repository_dispatch:
+    types:
+      - app-image-built
+
+permissions:
+  contents: read
+
+jobs:
+
+  update-tags:
+    name: Update image tags → ${{ github.event.client_payload.tag }}
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ── Checkout petclinic-microservices directly ─────────────────────────────
+      # Direct checkout of the app repo — NOT via submodule.
+      # helm-values/ lives at the root of petclinic-microservices.
+      # APP_REPO_TOKEN is required to push back to the app repo.
+      - name: Checkout petclinic-microservices
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.APP_REPO_TOKEN }}
+          repository: petclinic-project/petclinic-microservices
+          ref: main
+          path: petclinic-microservices
+
+      # ── Install yq (mikefarah v4) ────────────────────────────────────────────
+      - name: Install yq v4
+        run: |
+          YQ_VERSION="v4.43.1"
+          wget -qO /usr/local/bin/yq \
+            "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64"
+          chmod +x /usr/local/bin/yq
+          yq --version
+
+      # ── Update image.tag in helm-values/{service}.yaml ───────────────────────
+      - name: Update image tags with yq
+        working-directory: petclinic-microservices
+        env:
+          TAG:      ${{ github.event.client_payload.tag }}
+          SERVICES: ${{ toJson(github.event.client_payload.services) }}
+          SHA:      ${{ github.event.client_payload.sha }}
+        run: |
+          echo "Image tag  : ${TAG}"
+          echo "Source SHA : ${SHA}"
+          echo "Services   : ${SERVICES}"
+          echo ""
+
+          echo "${SERVICES}" | jq -r '.[]' | while read -r SERVICE; do
+            VALUES_FILE="helm-values/${SERVICE}.yaml"
+
+            if [[ ! -f "${VALUES_FILE}" ]]; then
+              echo "::error::Values file not found: ${VALUES_FILE}"
+              exit 1
+            fi
+
+            echo "Updating ${VALUES_FILE} → image.tag: ${TAG}"
+            yq -i ".image.tag = \"${TAG}\"" "${VALUES_FILE}"
+
+            WRITTEN=$(yq '.image.tag' "${VALUES_FILE}")
+            if [[ "${WRITTEN}" != "${TAG}" ]]; then
+              echo "::error::yq write verification failed for ${SERVICE}: expected ${TAG}, got ${WRITTEN}"
+              exit 1
+            fi
+            echo "  ✓ Verified: image.tag = ${WRITTEN}"
+          done
+
+      # ── Show diff before committing ───────────────────────────────────────────
+      - name: Show diff
+        working-directory: petclinic-microservices
+        run: git diff helm-values/
+
+      # ── Commit and push to petclinic-microservices ────────────────────────────
+      - name: Commit and push updated tags
+        working-directory: petclinic-microservices
+        env:
+          TAG:      ${{ github.event.client_payload.tag }}
+          SERVICES: ${{ toJson(github.event.client_payload.services) }}
+          SHA:      ${{ github.event.client_payload.sha }}
+          RUN_URL:  ${{ github.event.client_payload.run_url }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add helm-values/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit — image tags already at ${TAG}"
+            exit 0
+          fi
+
+          SERVICES_LIST=$(echo "${SERVICES}" | jq -r 'join(", ")')
+
+          git commit -m "ci: update image tags → ${TAG}
+
+          Services updated: ${SERVICES_LIST}
+          Source commit   : ${SHA}
+          CI run          : ${RUN_URL}"
+
+          git push origin main
+          echo "✓ Committed and pushed tag update for: ${SERVICES_LIST}"
+
+      # ── Job summary ──────────────────────────────────────────────────────────
+      - name: Write job summary
+        if: always()
+        env:
+          TAG:      ${{ github.event.client_payload.tag }}
+          SERVICES: ${{ toJson(github.event.client_payload.services) }}
+          SHA:      ${{ github.event.client_payload.sha }}
+        run: |
+          echo "## 🏷️ Image Tag Update" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          echo "| Tag | \`${TAG}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Source SHA | \`${SHA}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Services | \`$(echo ${SERVICES} | jq -r 'join(", ")')\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "_ArgoCD will detect this commit and auto-sync the dev Applications._" >> $GITHUB_STEP_SUMMARY
