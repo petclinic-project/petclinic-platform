@@ -93,11 +93,10 @@ module "rds" {
   maintenance_window      = "sun:04:00-sun:05:00"
 
   deletion_protection       = false
-  skip_final_snapshot       = false
+  skip_final_snapshot       = true
   final_snapshot_identifier = "${var.project}-${var.environment}-rds-final-snapshot"
   copy_tags_to_snapshot     = true
 }
-
 
 module "iam" {
   source = "../../modules/iam"
@@ -114,8 +113,11 @@ module "iam" {
   # RDS secret ARN — the exact Secrets Manager secret ESO is allowed to read
   rds_secret_arn = module.rds.master_user_secret_arn
 
-  # GitHub repository that owns the CI workflows (TEAM-3)
+  # App CI repos — trusted to push Docker images to ECR (AWS_ROLE_ARN secret)
   github_org    = var.github_org
   github_repo   = var.github_repo
   github_branch = var.github_branch
+
+  # Platform CI repos — trusted to run terraform plan/apply (TF_ROLE_ARN secret)
+  github_tf_repos = var.github_tf_repos
 }

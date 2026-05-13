@@ -51,21 +51,33 @@ variable "rds_secret_arn" {
 }
 
 # ---------------------------------------------------------------------------
-# GitHub Actions OIDC — scopes the CI role to one repo and branch
+# GitHub Actions OIDC — scopes the CI role to the repos that need AWS access
+#
+# TWO repos must be listed:
+#   1. spring-petclinic-microservices — runs build-push.yml (ECR push)
+#   2. petclinic-platform             — runs terraform-ci.yml (Terraform apply)
+#
+# The trust policy grants all listed repos the StringLike condition,
+# so each can independently assume this role via OIDC.
 # ---------------------------------------------------------------------------
 
 variable "github_org" {
-  description = "GitHub organisation or user name that owns the application repository"
+  description = "GitHub organisation that owns the CI repositories. Note: IAM trust policies use full 'org/repo' paths from github_repo and github_tf_repos — this variable is not used in trust conditions but kept for naming/tagging reference."
   type        = string
 }
 
 variable "github_repo" {
-  description = "GitHub repository name (without the org prefix)"
-  type        = string
+  description = "List of GitHub repositories in 'org/repo' format allowed to assume the CI role. Supports repos from different organisations."
+  type        = list(string)
 }
 
 variable "github_branch" {
-  description = "Branch that is allowed to assume the GitHub Actions CI role"
+  description = "Primary branch name (informational). IAM trust uses 'repo:org/repo:*' to allow both push and PR workflows. Branch-level enforcement is handled by workflow conditions, not IAM."
   type        = string
   default     = "main"
+}
+
+variable "github_tf_repos" {
+  description = "List of GitHub repositories in 'org/repo' format allowed to assume the Terraform CI role — typically the platform repo only"
+  type        = list(string)
 }

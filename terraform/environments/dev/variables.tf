@@ -22,8 +22,8 @@ variable "github_org" {
 }
 
 variable "github_repo" {
-  description = "GitHub repository name (without the org prefix)"
-  type        = string
+  description = "List of GitHub repositories in 'org/repo' format allowed to assume the CI role — supports repos from different orgs"
+  type        = list(string)
 }
 
 variable "github_branch" {
@@ -32,3 +32,7 @@ variable "github_branch" {
   default     = "main"
 }
 
+variable "github_tf_repos" {
+  description = "List of GitHub repositories in 'org/repo' format allowed to assume the Terraform CI role"
+  type        = list(string)
+}
