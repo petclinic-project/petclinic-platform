@@ -46,7 +46,7 @@ jobs:
         with:
           token: ${{ secrets.APP_REPO_TOKEN }}
           repository: petclinic-project/petclinic-microservices
-          ref: develop
+          ref: main
           path: petclinic-microservices
 
       # ── Install yq (mikefarah v4) ────────────────────────────────────────────
@@ -122,7 +122,7 @@ jobs:
           Source commit   : ${SHA}
           CI run          : ${RUN_URL}"
 
-          git push origin develop
+          git push origin main
           echo "✓ Committed and pushed tag update for: ${SERVICES_LIST}"
 
       # ── Job summary ──────────────────────────────────────────────────────────
