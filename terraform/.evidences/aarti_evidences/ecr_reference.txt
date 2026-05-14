@@ -1,0 +1,13 @@
+# Generated: 2026-05-09T18:56:16+03:00
+# Command: terraform output ecr_repository_urls 2>/dev/null || true
+
+{
+  "admin-server" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/admin-server"
+  "api-gateway" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/api-gateway"
+  "config-server" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/config-server"
+  "customers-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/customers-service"
+  "discovery-server" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/discovery-server"
+  "genai-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/genai-service"
+  "vets-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/vets-service"
+  "visits-service" = "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/visits-service"
+}

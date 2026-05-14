@@ -1,0 +1,253 @@
+{
+  "alb_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-0b727f6adcdf3f9a4"
+  },
+  "aws_account_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "482352877891"
+  },
+  "aws_region": {
+    "sensitive": false,
+    "type": "string",
+    "value": "us-east-1"
+  },
+  "ecr_environment_prefix": {
+    "sensitive": false,
+    "type": "string",
+    "value": "petclinic-dev"
+  },
+  "ecr_repository_arns": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "admin-server": "string",
+        "api-gateway": "string",
+        "config-server": "string",
+        "customers-service": "string",
+        "discovery-server": "string",
+        "genai-service": "string",
+        "vets-service": "string",
+        "visits-service": "string"
+      }
+    ],
+    "value": {
+      "admin-server": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/admin-server",
+      "api-gateway": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/api-gateway",
+      "config-server": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/config-server",
+      "customers-service": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/customers-service",
+      "discovery-server": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/discovery-server",
+      "genai-service": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/genai-service",
+      "vets-service": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/vets-service",
+      "visits-service": "arn:aws:ecr:us-east-1:482352877891:repository/petclinic-dev/visits-service"
+    }
+  },
+  "ecr_repository_names": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "admin-server": "string",
+        "api-gateway": "string",
+        "config-server": "string",
+        "customers-service": "string",
+        "discovery-server": "string",
+        "genai-service": "string",
+        "vets-service": "string",
+        "visits-service": "string"
+      }
+    ],
+    "value": {
+      "admin-server": "petclinic-dev/admin-server",
+      "api-gateway": "petclinic-dev/api-gateway",
+      "config-server": "petclinic-dev/config-server",
+      "customers-service": "petclinic-dev/customers-service",
+      "discovery-server": "petclinic-dev/discovery-server",
+      "genai-service": "petclinic-dev/genai-service",
+      "vets-service": "petclinic-dev/vets-service",
+      "visits-service": "petclinic-dev/visits-service"
+    }
+  },
+  "ecr_repository_urls": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "admin-server": "string",
+        "api-gateway": "string",
+        "config-server": "string",
+        "customers-service": "string",
+        "discovery-server": "string",
+        "genai-service": "string",
+        "vets-service": "string",
+        "visits-service": "string"
+      }
+    ],
+    "value": {
+      "admin-server": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/admin-server",
+      "api-gateway": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/api-gateway",
+      "config-server": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/config-server",
+      "customers-service": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/customers-service",
+      "discovery-server": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/discovery-server",
+      "genai-service": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/genai-service",
+      "vets-service": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/vets-service",
+      "visits-service": "482352877891.dkr.ecr.us-east-1.amazonaws.com/petclinic-dev/visits-service"
+    }
+  },
+  "eks_cluster_certificate_authority_data": {
+    "sensitive": true,
+    "type": "string",
+    "value": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJSzRFY2xyY0thWkV3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpBMU1USXdOVEEwTlRkYUZ3MHpOakExTURrd05UQTVOVGRhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUNpS2hkbFpjRHM5bUhXR3FjbSs1eE1jSmwwNGxKSVZWVE1OSllSODllV1Q3VUdPUUkvQkNLd1ZqMHgKNkt6Nm5lbVVoaUYyVzI0Tm5RSmdiRHBVc3BsUUo5WTFFVmJuV2FIRGdkR2VRN0FnUmJZOFlIUkk4UHZNSmd5awpSWTJBWWRFZFdORzA4VjRMRTR0Nlp5VUd6aEpYZ3k1OEZ5WWZrREZnSkFrcnJxREc0SytSOGYrNzMyVWdMVHRzCm9zQ1dyQTNvbkZyYVFrMy9wMUc4MkpWUjVQU0U1UTBaSFdvRU8yQldBM3pOalVEU0VsZHo1RkxhTE1ScHFrNngKcDBNSlhtbW5kMnlqWGg4S3B3NjFNbjBWSnhpaXIxTUE1N1VJc1JRUmRwSmdSRmxyK1N4bGYxTm96WnBuZmhsTQpic01XVmRSRDNxZ3R6K0xrVEFOMXA3SStCV3hiQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJScDVsaGJab2laQ2U3b3R4c2lSMk1wMjZQM3REQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQWZocVlFMUlNZgo1eWFYa3E4aVVRZEhxWS8vTEQ2allseEpIby9CQ1UybUNYc1NqRjA1VFk0V3ozbzBjcFM2QStHVll2MFBvSE5tCnN2djZ3ZWl1dEpCUHcyRXVkOWxBREZPUkluNXM4OUtDZVBiRFdCY1lUdnVCdVlaU1FzSjRxNVU0ZGU4TDZ2c2cKeS9LOWhFZGdnRE8reG10YWpBRkJsV2F3UHBENlFMb1FJVUJ0OW12T2s0d0h3VjZXR0xCVmpUZnlWQlY2WGRkdQo3OTlGTUhuN1FjSGlkclYrTThDNUY5QXVzKzFzS3F3SUZWdWdhYXZGTXpHOHZzdE1YRkY2aXhYMzJSOENySGovCmk0NnR5OFE4dVJEUEY5M3hrejUyUEUvMUx6RTVRRWtZY1laOHFmMDZtWEJodzB0TzJvbE5rQ0tYbGhRb1BzM2YKZTRWOWIvUStCSDRPCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+  },
+  "eks_cluster_endpoint": {
+    "sensitive": false,
+    "type": "string",
+    "value": "https://6514929A3E8F5877215665F5865535D0.gr7.us-east-1.eks.amazonaws.com"
+  },
+  "eks_cluster_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "petclinic-dev"
+  },
+  "eks_cluster_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::482352877891:role/petclinic-dev-eks-cluster-role"
+  },
+  "eks_cluster_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-08ad864c18bbc4221"
+  },
+  "eks_node_group_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "petclinic-dev-nodes"
+  },
+  "eks_node_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::482352877891:role/petclinic-dev-eks-node-role"
+  },
+  "eks_node_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-06fc7ab81b16cba69"
+  },
+  "eks_oidc_provider_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::482352877891:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/6514929A3E8F5877215665F5865535D0"
+  },
+  "eks_oidc_provider_url": {
+    "sensitive": false,
+    "type": "string",
+    "value": "oidc.eks.us-east-1.amazonaws.com/id/6514929A3E8F5877215665F5865535D0"
+  },
+  "iam_ebs_csi_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::482352877891:role/petclinic-dev-ebs-csi-role"
+  },
+  "iam_eso_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::482352877891:role/petclinic-dev-eso-role"
+  },
+  "iam_github_actions_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::482352877891:role/petclinic-github-actions-role"
+  },
+  "iam_lb_controller_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::482352877891:role/petclinic-dev-lb-controller-role"
+  },
+  "internet_gateway_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "igw-085b5e15c7345aaa3"
+  },
+  "public_route_table_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "rtb-05c53054a02efe726"
+  },
+  "public_subnet_cidrs": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "10.0.1.0/24",
+      "10.0.2.0/24"
+    ]
+  },
+  "public_subnet_ids": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "subnet-04aa30963087ffcc8",
+      "subnet-0c7d712147166d33e"
+    ]
+  },
+  "rds_backup_retention_period": {
+    "sensitive": false,
+    "type": "number",
+    "value": 1
+  },
+  "rds_backup_window": {
+    "sensitive": false,
+    "type": "string",
+    "value": "03:00-04:00"
+  },
+  "rds_copy_tags_to_snapshot": {
+    "sensitive": false,
+    "type": "bool",
+    "value": true
+  },
+  "rds_deletion_protection": {
+    "sensitive": false,
+    "type": "bool",
+    "value": false
+  },
+  "rds_maintenance_window": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sun:04:00-sun:05:00"
+  },
+  "rds_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-05f524b3bc7e9fc86"
+  },
+  "rds_skip_final_snapshot": {
+    "sensitive": false,
+    "type": "bool",
+    "value": false
+  },
+  "vpc_cidr": {
+    "sensitive": false,
+    "type": "string",
+    "value": "10.0.0.0/16"
+  },
+  "vpc_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "vpc-0fc81a2790cbd4697"
+  }
+}

@@ -1,0 +1,31 @@
+Aarti RDS Summary
+=================
+
+AWS Account: 482352877891
+Region: us-east-1
+
+Required Terraform Environment:
+terraform/environments/dev
+
+Backend:
+S3 bucket: petclinic-terraform-state-482352877891
+DynamoDB lock table: petclinic-terraform-locks
+State key: petclinic/dev/terraform.tfstate
+
+Network:
+VPC ID: vpc-083c68b82d83b66ff
+
+EKS:
+Cluster name: petclinic-dev
+EKS Node Security Group: sg-066a4a19d7c11935c
+
+RDS:
+RDS Security Group: sg-00629331e6ac801f2
+
+ALB:
+ALB Security Group: sg-020364a6a14aabe31
+
+RDS task rule:
+- MySQL port 3306 should be allowed only from the EKS node security group.
+- Use the existing RDS security group.
+- Do not hardcode DB credentials.

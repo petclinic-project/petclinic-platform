@@ -1,0 +1,28 @@
+
+# Terraform safety
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+backend.hcl
+crash.log
+crash.*.log
+
+# Secrets and local credentials
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+**/secrets/
+
+# Local/editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+tfplan

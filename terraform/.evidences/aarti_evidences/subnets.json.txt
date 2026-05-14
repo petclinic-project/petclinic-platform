@@ -1,0 +1,117 @@
+# Generated: 2026-05-09T18:56:07+03:00
+# Command: aws ec2 describe-subnets --region 'us-east-1' --filters Name=vpc-id,Values='vpc-083c68b82d83b66ff' --query 'Subnets[*]' --output json
+
+[
+    {
+        "AvailabilityZoneId": "use1-az1",
+        "MapCustomerOwnedIpOnLaunch": false,
+        "OwnerId": "482352877891",
+        "AssignIpv6AddressOnCreation": false,
+        "Ipv6CidrBlockAssociationSet": [],
+        "Tags": [
+            {
+                "Key": "Environment",
+                "Value": "dev"
+            },
+            {
+                "Key": "ManagedBy",
+                "Value": "terraform"
+            },
+            {
+                "Key": "Name",
+                "Value": "petclinic-dev-public-1"
+            },
+            {
+                "Key": "Project",
+                "Value": "petclinic"
+            },
+            {
+                "Key": "kubernetes.io/role/elb",
+                "Value": "1"
+            },
+            {
+                "Key": "Team",
+                "Value": "team-1-infra"
+            },
+            {
+                "Key": "kubernetes.io/cluster/petclinic-dev",
+                "Value": "shared"
+            }
+        ],
+        "SubnetArn": "arn:aws:ec2:us-east-1:482352877891:subnet/subnet-001fc51be03c80e4f",
+        "EnableDns64": false,
+        "Ipv6Native": false,
+        "PrivateDnsNameOptionsOnLaunch": {
+            "HostnameType": "ip-name",
+            "EnableResourceNameDnsARecord": false,
+            "EnableResourceNameDnsAAAARecord": false
+        },
+        "BlockPublicAccessStates": {
+            "InternetGatewayBlockMode": "off"
+        },
+        "SubnetId": "subnet-001fc51be03c80e4f",
+        "State": "available",
+        "VpcId": "vpc-083c68b82d83b66ff",
+        "CidrBlock": "10.0.1.0/24",
+        "AvailableIpAddressCount": 246,
+        "AvailabilityZone": "us-east-1a",
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true
+    },
+    {
+        "AvailabilityZoneId": "use1-az2",
+        "MapCustomerOwnedIpOnLaunch": false,
+        "OwnerId": "482352877891",
+        "AssignIpv6AddressOnCreation": false,
+        "Ipv6CidrBlockAssociationSet": [],
+        "Tags": [
+            {
+                "Key": "kubernetes.io/cluster/petclinic-dev",
+                "Value": "shared"
+            },
+            {
+                "Key": "Environment",
+                "Value": "dev"
+            },
+            {
+                "Key": "kubernetes.io/role/elb",
+                "Value": "1"
+            },
+            {
+                "Key": "ManagedBy",
+                "Value": "terraform"
+            },
+            {
+                "Key": "Team",
+                "Value": "team-1-infra"
+            },
+            {
+                "Key": "Project",
+                "Value": "petclinic"
+            },
+            {
+                "Key": "Name",
+                "Value": "petclinic-dev-public-2"
+            }
+        ],
+        "SubnetArn": "arn:aws:ec2:us-east-1:482352877891:subnet/subnet-058f25865e0b5246b",
+        "EnableDns64": false,
+        "Ipv6Native": false,
+        "PrivateDnsNameOptionsOnLaunch": {
+            "HostnameType": "ip-name",
+            "EnableResourceNameDnsARecord": false,
+            "EnableResourceNameDnsAAAARecord": false
+        },
+        "BlockPublicAccessStates": {
+            "InternetGatewayBlockMode": "off"
+        },
+        "SubnetId": "subnet-058f25865e0b5246b",
+        "State": "available",
+        "VpcId": "vpc-083c68b82d83b66ff",
+        "CidrBlock": "10.0.2.0/24",
+        "AvailableIpAddressCount": 242,
+        "AvailabilityZone": "us-east-1b",
+        "DefaultForAz": false,
+        "MapPublicIpOnLaunch": true
+    }
+]
