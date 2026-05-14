@@ -22,12 +22,12 @@ name: Terraform CI
 on:
   pull_request:
     branches:
-      - main
+      - develop
     paths:
       - 'terraform/**'
   push:
     branches:
-      - main
+      - develop
     paths:
       - 'terraform/**'
 
@@ -227,7 +227,7 @@ jobs:
       #   2. State locking (DynamoDB) prevents concurrent applies
       #   3. concurrency: group above prevents parallel runs
       - name: Terraform Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: |
           terraform apply \
             -auto-approve \
